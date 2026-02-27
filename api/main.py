@@ -10,6 +10,11 @@ from openai import OpenAI
 
 app = FastAPI(title="MacroCam API")
 
+allowed_origins = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:3000,https://macrocam-five.vercel.app"
+).split(",")
+
 # allow frontend to connect
 app.add_middleware(
     CORSMiddleware,
